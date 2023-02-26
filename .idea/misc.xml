@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable-v24/empty_bac.xml" value="0.3111111111111111" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/editext_shape.xml" value="0.30185185185185187" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_aboutapp.xml" value="0.3769230769230769" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_add.xml" value="0.3769230769230769" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_changepass.xml" value="0.3769230769230769" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_edit.xml" value="0.30104166666666665" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3111111111111111" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/rounded.xml" value="0.3769230769230769" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/shape.xml" value="0.3769230769230769" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/shape_item.xml" value="0.3769230769230769" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/signin_shape.xml" value="0.30185185185185187" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/activity_final_screen.xml" value="0.29257246376811596" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/activity_login.xml" value="0.2821557971014493" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/activity_main.xml" value="0.29483695652173914" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/activity_reg.xml" value="0.2753623188405797" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/activity_registration.xml" value="0.2753623188405797" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/activity_update_data.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/addonfinalscreen.xml" value="0.25" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/bottom_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/dialogue_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/headerfile.xml" value="0.25" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/nav_header.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/rows.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/storevaluesscreen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/update_dialoge.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/menu/drawer_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/menu/sidemenu.xml" value="0.28489583333333335" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

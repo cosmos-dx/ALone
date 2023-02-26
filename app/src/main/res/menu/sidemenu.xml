@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/changepass"
+            android:icon="@drawable/ic_changepass"
+            android:title="Password"/>
+
+        <item android:id="@+id/deleteall"
+            android:icon="@drawable/ic_deleteall"
+            android:title="Delete All"/>
+
+        <item android:id="@+id/aboutapp"
+            android:icon="@drawable/ic_aboutapp"
+            android:title="About App"/>
+
+
+    </group>
+    <group android:checkableBehavior="single">
+       <item android:title="social">
+           <menu>
+               <item android:id="@+id/sendapp"
+                   android:icon="@drawable/ic_send"
+                   android:title="Send"/>
+
+               <item android:id="@+id/shareapp"
+                   android:icon="@drawable/ic_share"
+                   android:title="Share"/>
+
+           </menu>
+
+       </item>
+
+    </group>
+
+</menu>

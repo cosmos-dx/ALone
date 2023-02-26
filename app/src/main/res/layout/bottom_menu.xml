@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <FrameLayout
+        android:id="@+id/design_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        app:layout_behavior = "com.google.android.material.bottomsheet.BottomSheetBehavior"
+
+        android:background="@drawable/rounded"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_bottom_menu"
+            android:padding="@dimen/_14sdp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center|top">
+
+        </ImageView>
+
+        <ImageView
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:src="@drawable/display_icon"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="@dimen/_40sdp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Created By- Abhishek"
+            android:textSize="@dimen/_14sdp"
+            android:fontFamily="@font/mono"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textStyle="italic"/>
+
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
