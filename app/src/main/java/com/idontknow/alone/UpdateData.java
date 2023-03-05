@@ -12,12 +12,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.security.SecureRandom;
+
 public class UpdateData extends AppCompatActivity {
 
     EditText key_title, value;
-    Button update_btn;
-
+    Button update_btn,gen_btn;
     String title ,val;
+    EncryptDecrypt encdcp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,17 @@ public class UpdateData extends AppCompatActivity {
         key_title = findViewById(R.id.edit_text_key);
         value = findViewById(R.id.edit_text_value);
         update_btn = findViewById(R.id.update_btn);
+        gen_btn = findViewById(R.id.gen_btn);
+
+        encdcp = new EncryptDecrypt();
+
+        gen_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generatepass();
+            }
+        });
+
 
         getAndSetIntentData();
 
@@ -71,6 +84,9 @@ public class UpdateData extends AppCompatActivity {
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                //------------------------------------------------------------- ganit lagegi
+
                 MyDbCode myDB = new MyDbCode(UpdateData.this);
                 title = key_title.getText().toString().trim();
                 val = value.getText().toString().trim();
@@ -87,5 +103,20 @@ public class UpdateData extends AppCompatActivity {
         });
         builder.create().show();
     }
+    void generatepass (){
+        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        SecureRandom random = new SecureRandom();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 12; i++)
+        {
+            int randomIndex = random.nextInt(chars.length());
+            sb.append(chars.charAt(randomIndex));
+        }
+
+        value.setText(sb.toString());
+    }
+
 
 }

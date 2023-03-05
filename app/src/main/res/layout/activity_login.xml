@@ -78,7 +78,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:inputType="numberPassword"
+            android:inputType="textPassword"
             android:gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"
@@ -97,22 +97,31 @@
 
         </LinearLayout>
 
-
-        <Button
-            android:id="@+id/signin_btn"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text = "Sign In"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/mono"
-            android:textSize="@dimen/_13sdp"
-            android:gravity="center"/>
+            android:id="@+id/infopass"
+            android:textSize="@dimen/_9sdp"
+            android:gravity="center"
+            android:textColor="#0000FF"
+            android:textStyle="italic|bold"
+            android:fontFamily="@font/mono"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/signin_btn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text = "Sign In"-->
+<!--            android:padding="@dimen/_5sdp"-->
+<!--            android:layout_marginStart="@dimen/_10sdp"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            android:layout_marginEnd="@dimen/_10sdp"-->
+<!--            android:layout_marginLeft="@dimen/_10sdp"-->
+<!--            android:layout_marginRight="@dimen/_10sdp"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:fontFamily="@font/mono"-->
+<!--            android:textSize="@dimen/_13sdp"-->
+<!--            android:gravity="center"/>-->
 
     </LinearLayout>
 

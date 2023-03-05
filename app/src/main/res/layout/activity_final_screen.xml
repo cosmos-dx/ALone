@@ -79,7 +79,7 @@
                 android:id="@+id/recHome"
                 android:layout_below="@id/toolbar"
                 android:layout_marginTop="@dimen/_50sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

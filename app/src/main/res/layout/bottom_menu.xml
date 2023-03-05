@@ -16,6 +16,7 @@
         >
 
         <ImageView
+            android:id="@+id/dragline"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_bottom_menu"
@@ -25,12 +26,29 @@
 
         </ImageView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="About App"
+            android:textSize="@dimen/_20sdp"
+            android:fontFamily="@font/mono"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_gravity="center|top"
+            android:layout_height="wrap_content"/>
+
         <ImageView
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
             android:src="@drawable/display_icon"
             android:layout_gravity="center|top"
-            android:layout_marginTop="@dimen/_40sdp"/>
+            android:layout_marginTop="@dimen/_60sdp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|bottom"
+            android:orientation="vertical">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,10 +56,24 @@
             android:text="Created By- Abhishek"
             android:textSize="@dimen/_14sdp"
             android:fontFamily="@font/mono"
+            android:layout_margin ="@dimen/_80sdp"
             android:textColor="@color/white"
-            android:layout_gravity="center"
             android:gravity="center"
+
             android:textStyle="italic"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="Version 1.0"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:textStyle="italic"/>
+
+
+        </LinearLayout>
 
 
     </FrameLayout>

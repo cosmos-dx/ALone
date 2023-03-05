@@ -93,6 +93,16 @@
         android:layout_marginEnd="32dp"
         android:text="Update" />
 
+    <Button
+        android:id="@+id/gen_btn"
+        android:layout_below="@+id/filledTextField_Value"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="32dp"
+        android:text="Generate" />
+
 
 
 </RelativeLayout>

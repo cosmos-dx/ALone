@@ -10,8 +10,8 @@
             android:title="Delete All"/>
 
         <item android:id="@+id/aboutapp"
-            android:icon="@drawable/ic_aboutapp"
-            android:title="About App"/>
+            android:icon="@drawable/ic_export"
+            android:title="Export"/>
 
 
     </group>

@@ -3,5 +3,10 @@
 
     <stroke android:color="#929292" android:width="@dimen/_1sdp"/>
     <solid android:color="@color/white"></solid>
-    <corners android:radius="@dimen/_40sdp" />
+    <corners android:radius="@dimen/_1sdp" />
+    <gradient android:centerY="@integer/material_motion_duration_long_1"
+        android:startColor="@color/primary_red"
+        android:endColor="@color/purple_200">
+
+    </gradient>
 </shape>

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -18,10 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
     private Context context;
     private Activity activity;
-    private ArrayList book_key, book_value;
+    private ArrayList book_key, book_value, key_hash;
     Dialog myupdialog;
     public String up_key_text;
 
@@ -44,6 +45,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         holder.key_txt.setText(String.valueOf(book_key.get(position)));
+        //holder.itemView.setBackgroundColor(Color.parseColor("#000000"));
         //holder.value_txt.setText(String.valueOf(book_value.get(position)));
 
 
@@ -57,8 +59,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             }
         });
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+        holder.mainLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //MyDialogue myDialogue = new MyDialogue();
+                Toast.makeText(context, "LongPressed", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+    
 
 
     }
@@ -68,6 +79,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public int getItemCount() {
         return book_key.size();
     }
+
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
@@ -88,5 +100,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         }
 
+    }
+    public void openDialogue(){
+        MyDialogue myDialogue = new MyDialogue();
+
+//        Bundle args = new Bundle();
+//        args.putString("title", "Add Sample Title");
+//        args.putString("DisplayText", "Once Upon a time There was a king.. ");
+//        args.putString("KeyId", "AnyThing Required... ");
+//        args.putString("Key1", "Values222");
+//        args.putString("Key2", "Values 3333");
+//        args.putBoolean("SHOW_VIEW_INPUT_DIALOG", true); // will show on onCreateView
+//        myDialogue.setArguments(args);
+//        FragmentTransaction ft = myupdialog.getFr().beginTransaction();
+//        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+//        if (prev != null) {
+//            ft.remove(prev);
+//        }
+//        ft.addToBackStack(null);
+//        myDialogue.show(ft, "dialog");
     }
 }
