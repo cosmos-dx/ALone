@@ -101,13 +101,24 @@ public class MyDbCode extends SQLiteOpenHelper {
         return  cursor;
     }
 
-    public void updateData(String Key_titleupd, String key_Dataupd){
+    public void updateData(String prevKey_title, String Key_titleupd, String key_Dataupd){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
+        cv.put(key_title, Key_titleupd);
         cv.put(key_data,key_Dataupd);
-        db.update(TABLE_Data_NAME, cv, "key_title = ?", new String[]{Key_titleupd});
+        db.update(TABLE_Data_NAME, cv, "key_title = ?", new String[]{prevKey_title});
 
 
+        db.close();
+    }
+
+
+    void deleteOneData(String key_titleUpdateDia) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        db.delete(TABLE_Data_NAME, "key_title=?", new String[]{key_titleUpdateDia});
         db.close();
     }
 

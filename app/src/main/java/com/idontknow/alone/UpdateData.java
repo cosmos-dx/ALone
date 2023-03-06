@@ -16,10 +16,11 @@ import java.security.SecureRandom;
 
 public class UpdateData extends AppCompatActivity {
 
-    EditText key_title, value;
+    EditText key_title, value, edit_text_key;
+    String prevKey_title;
     Button update_btn,gen_btn;
     String title ,val;
-    EncryptDecrypt encdcp;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class UpdateData extends AppCompatActivity {
         update_btn = findViewById(R.id.update_btn);
         gen_btn = findViewById(R.id.gen_btn);
 
-        encdcp = new EncryptDecrypt();
+        //filledTextField_key = findViewById(R.id.filledTextField_key);
 
         gen_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +70,7 @@ public class UpdateData extends AppCompatActivity {
             val = getIntent().getStringExtra("value");
 
             key_title.setText(title);
+            prevKey_title = key_title.getText().toString();
             value.setText(val);
 
             Log.d("stev", title+" "+val);
@@ -88,9 +90,11 @@ public class UpdateData extends AppCompatActivity {
                 //------------------------------------------------------------- ganit lagegi
 
                 MyDbCode myDB = new MyDbCode(UpdateData.this);
-                title = key_title.getText().toString().trim();
+
+                title = key_title.getText().toString();
                 val = value.getText().toString().trim();
-                myDB.updateData(title, val);
+
+                myDB.updateData(prevKey_title, title, val);
                 finish();
             }
         });

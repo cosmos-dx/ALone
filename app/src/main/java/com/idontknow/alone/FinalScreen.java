@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -34,7 +35,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-public class FinalScreen extends AppCompatActivity implements DialogInterface.OnDismissListener,MyDialogue.MydiaInterface{
+public class FinalScreen extends AppCompatActivity implements DialogInterface.OnDismissListener,
+        MyDialogue.MydiaInterface, CustomAdapter.MyAdapterInterface{
     //------------------------------------------------------------------------------- Initialization
 
         DrawerLayout drawerLayout;
@@ -81,6 +83,14 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 dbRefresh(s.toString());
+                switch (s.toString()){
+                    case "#close":
+                        closeapp();
+                    case "#smile":
+                        Intent Intent3=new   Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+                        startActivity(Intent3);
+                }
+
             }
             @Override
             public void afterTextChanged(Editable s) {
@@ -133,6 +143,8 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
         //------------------------------------------------------------ BottomSheet(neeche wala Menu)
 
 
+
+
         //-------------------------------------------------------------------------------Logging Out
 
         Vibrator vibe = (Vibrator)
@@ -142,12 +154,28 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
             @Override
             public void onClick(View v) {
                 vibe.vibrate(70);
-                FinalScreen.this.finish();
+                finishAffinity();
+                finish();
                 System.exit(0);
             }
         });
 
         //-------------------------------------------------------------------------------Logging Out
+
+
+
+
+//        KeyguardManager myKM = (KeyguardManager) this.getSystemService(Activity.KEYGUARD_SERVICE);
+//        if( myKM.inKeyguardRestrictedInputMode()) {
+//            //it is locked
+//            vibe.vibrate(70);
+//            finishAffinity();
+//            finish();
+//            System.exit(0);
+//        } else {
+//            //it is not locked
+//        }
+
 
         //------------------------------------------------------------------------- Floating Buttons
 
@@ -199,6 +227,25 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
 
                  case R.id.aboutapp:
                      dbExport expdb = new dbExport();
+
+                 case R.id.shareapp:
+                     try {
+                         Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                         shareIntent.setType("text/plain");
+                         shareIntent.putExtra(Intent.EXTRA_SUBJECT, "ALone (All password one Place)");
+                         String shareMessage= "\nOffline app to secure your password at one place\n\n";
+                         shareMessage = shareMessage + "https://github.com/cosmos-dx/ALone" + "\n\n"; //BuildConfig.APPLICATION_ID +"\n\n";
+                         shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                         startActivity(Intent.createChooser(shareIntent, "choose one"));
+                     } catch(Exception e) {
+                         //e.toString();
+                     }
+
+                 case R.id.aboutcheat:
+                     ArrayList<String> cheat = new ArrayList<>();
+                     cheat.add("#close");
+                     cheat.add("#smile");
+                     AlertCheat(cheat);
 
 
 
@@ -267,6 +314,80 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
         ft.addToBackStack(null);
         myDialogue.show(ft, "dialog");
     }
+
+    public void openUpdateDialogue(String key_titleUpdateDia, String key_valueUpdateDia){
+        Update_frag update_frag = new Update_frag();
+        Bundle args = new Bundle();
+        args.putString("title", "Add Sample Title");
+        args.putString("DisplayText", "Once Upon a time There was a king.. ");
+        args.putString("KeyId", "Key-Id");
+        args.putString("Key", key_titleUpdateDia);
+        args.putString("Value", key_valueUpdateDia);
+        args.putBoolean("SHOW_VIEW_INPUT_DIALOG", true); // will show on onCreateView
+        update_frag.setArguments(args);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment prev = getSupportFragmentManager().findFragmentByTag("dialog");
+        if (prev != null) {
+            ft.remove(prev);
+        }
+        ft.addToBackStack(null);
+        update_frag.show(ft, "dialog");
+    }
+
+    public void closeapp(){
+        Vibrator vibe = (Vibrator)
+                this.getSystemService(getApplicationContext().VIBRATOR_SERVICE) ;
+        vibe.vibrate(50);
+        finishAffinity();
+        finish();
+        System.exit(0);
+    }
+
+    public void AlertDeleteOne(String key_titleUpdateDia, String key_valueUpdateDia){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Delete "+ key_titleUpdateDia + " ?");
+        alert.setMessage("Do you really want to delete " + key_titleUpdateDia + " data ?");
+
+        Vibrator vibe = (Vibrator)
+                this.getSystemService(getApplicationContext().VIBRATOR_SERVICE) ;
+        vibe.vibrate(50);
+
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                db.deleteOneData(key_titleUpdateDia);
+                Intent i = new Intent(FinalScreen.this, FinalScreen.class);
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(i);
+                overridePendingTransition(0, 0);
+                Toast.makeText(FinalScreen.this, "Deleted", Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.create().show();
+
+    }
+
+    public void AlertCheat(ArrayList<String > cheat){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Codes ?");
+        StringBuffer sb = new StringBuffer();
+
+        for (String s : cheat) {
+            sb.append(s);
+            sb.append(" ");
+        }
+        String str = sb.toString();
+        alert.setMessage(str);
+        alert.create().show();
+    }
+
     public void AlertDeleteAll(){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle("Delete All ?");
@@ -325,6 +446,10 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
         recyclerView.scrollToPosition(data_key.size() - 4);
         //recyclerView.getItemDecorationAt(data_key.size()-1);
 
+    }
+
+    public void getFinalMsg(){
+        Toast.makeText(this, "this is long", Toast.LENGTH_SHORT).show();
     }
 
 

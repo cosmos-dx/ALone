@@ -8,7 +8,13 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
+
+import java.util.concurrent.Executor;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -52,11 +58,68 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
+
+
             @Override
             public void afterTextChanged(Editable s) {
 
             }
         });
+
+        BiometricManager biometricManager = androidx.biometric.BiometricManager.from(this);
+        switch (biometricManager.canAuthenticate()) {
+
+            // this means we can use biometric sensor
+            case BiometricManager.BIOMETRIC_SUCCESS:
+
+                //msgtex.setTextColor(Color.parseColor("#fafafa"));
+                break;
+
+            // this means that the device doesn't have fingerprint sensor
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                //msgtex.setText("This device doesnot have a fingerprint sensor");
+
+               // loginbutton.setVisibility(View.GONE);
+                break;
+
+            // this means that biometric sensor is not available
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+                //msgtex.setText("The biometric sensor is currently unavailable");
+               // loginbutton.setVisibility(View.GONE);
+                break;
+
+            // this means that the device doesn't contain your fingerprint
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                //msgtex.setText("Your device doesn't have fingerprint saved,please check your security settings");
+               // loginbutton.setVisibility(View.GONE);
+                break;
+        }
+
+        Executor executor = ContextCompat.getMainExecutor(this);
+
+        final BiometricPrompt biometricPrompt = new BiometricPrompt(LoginActivity.this, executor, new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            // THIS METHOD IS CALLED WHEN AUTHENTICATION IS SUCCESS
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Intent i = new Intent(getApplicationContext(), FinalScreen.class);
+                startActivity(i);
+
+            }
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+            }
+        });
+
+        final BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder().setTitle("You can Try Login")
+                .setDescription("ALone Login ").setNegativeButtonText("Cancel").build();
+        biometricPrompt.authenticate(promptInfo);
 
 //        signin_btn = findViewById(R.id.signin_btn);
 //        signin_btn.setOnClickListener(new View.OnClickListener() {

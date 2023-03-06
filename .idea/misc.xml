@@ -7,8 +7,11 @@
         <entry key="..\:/Programming/ALone/app/src/main/res/drawable/editext_shape.xml" value="0.30185185185185187" />
         <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_aboutapp.xml" value="0.3769230769230769" />
         <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_add.xml" value="0.3769230769230769" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_baseline_fingerprint_24.xml" value="0.3611111111111111" />
         <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_bottom_menu.xml" value="0.3769230769230769" />
         <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_changepass.xml" value="0.3769230769230769" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_cheatcode.xml" value="0.3611111111111111" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_deleteall.xml" value="0.3611111111111111" />
         <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_edit.xml" value="0.30104166666666665" />
         <entry key="..\:/Programming/ALone/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3111111111111111" />
         <entry key="..\:/Programming/ALone/app/src/main/res/drawable/mydialogue_shape.xml" value="0.3769230769230769" />
@@ -30,6 +33,7 @@
         <entry key="..\:/Programming/ALone/app/src/main/res/layout/rows.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/ALone/app/src/main/res/layout/storevaluesscreen.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/ALone/app/src/main/res/layout/update_dialoge.xml" value="0.36666666666666664" />
+        <entry key="..\:/Programming/ALone/app/src/main/res/layout/update_frag.xml" value="0.33" />
         <entry key="..\:/Programming/ALone/app/src/main/res/menu/drawer_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Programming/ALone/app/src/main/res/menu/sidemenu.xml" value="0.28489583333333335" />
       </map>

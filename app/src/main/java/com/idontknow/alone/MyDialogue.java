@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 public class MyDialogue extends DialogFragment {
     //------------------------------------------------------------------------------- Initialization
         private String anyKeyId;
-        EditText editField;
+        EditText editField, edtValuetitle;
         Button save_btn, cancel_btn;
         MyDbCode db;
         //MyDbCode db = new MyDbCode(getActivity());
@@ -74,6 +73,7 @@ public class MyDialogue extends DialogFragment {
                     View view = inflater.inflate(R.layout.dialogue_layout, container, false);
                     Bundle args = getArguments();
                     editField = view.findViewById(R.id.edtkeytitle);
+                    //edtValuetitle = view.findViewById(R.id.edtValuetitle);
                     save_btn = view.findViewById(R.id.createTitle);
                     cancel_btn = view.findViewById(R.id.cancelBtn);
                     recyclerView = view.findViewById(R.id.recHome);
@@ -82,20 +82,20 @@ public class MyDialogue extends DialogFragment {
                     });
                     save_btn.setOnClickListener(view2 -> {
                         String key_title = editField.getText().toString();
+                        //String key_value = edtValuetitle.getText().toString();
                         if(key_title.isEmpty()){
                             editField.setError("Provide Title");
                             aloneMessageSender("No No Awwwww !!");
                         }
-//                        else if(key_title.contains(" ")){
-//
-//                            editField.setError("No WhiteSpaces");
-//                            aloneMessageSender("No No Awwwww !!");
-//                        }
+
                         else {
-                            //key_title.trim();
+
                             key_title = key_title.trim().replaceAll(" +", " ");
+
                             db = new MyDbCode(getContext());
-                            db.insertDataStore(key_title, "");
+                            db.insertDataStore(key_title,"");
+
+                            //getActivity().recreate();
                             mydiaInterface.text(key_title);
 
                             dismiss();
@@ -150,14 +150,6 @@ public class MyDialogue extends DialogFragment {
         ((FinalScreen) requireActivity()).messageFromAloneFragment(setMessage);
     }
 
-    void storeDataInArrays(){
-            Cursor cursor = db.readAllData();
-        while (cursor.moveToNext()){
-            data_key.add(cursor.getString(0));
-            value_book.add(cursor.getString(1));
-        }
-
-    }
 
     @Override
     public void onAttach(@NonNull Context context) {
