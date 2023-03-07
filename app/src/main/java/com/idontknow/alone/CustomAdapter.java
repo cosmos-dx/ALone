@@ -1,18 +1,23 @@
 package com.idontknow.alone;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -47,7 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.key_txt.setText(String.valueOf(book_key.get(position)));
         //holder.value_txt.setText(String.valueOf(book_value.get(position)));
         String value = String.valueOf(book_value.get(position));
@@ -88,6 +93,23 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 return true;
             }
         });
+
+        holder.user_status.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Vibrator vibe = (Vibrator)
+                        context.getSystemService(context.VIBRATOR_SERVICE) ;
+                String key_valueUpdateDia = String.valueOf(book_value.get(position));
+                ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("Copied", key_valueUpdateDia);
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(context,"Copied", Toast.LENGTH_SHORT).show();
+                vibe.vibrate(50);
+
+                return true;
+            }
+        });
     
 
 
@@ -104,12 +126,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         TextView  key_txt,update_edtkeytitle ,update_key_title;
         LinearLayout mainLayout, update_dialogue;
-        Button value_txt;
+        Button value_txt, user_status;
 
         MyViewHolder(@NonNull View itemView) {
             super(itemView);
             key_txt = itemView.findViewById(R.id.user_name);
             value_txt = itemView.findViewById(R.id.user_status);
+
+            user_status = itemView.findViewById(R.id.user_status);
 
             mainLayout = itemView.findViewById(R.id.mainLayout);
 

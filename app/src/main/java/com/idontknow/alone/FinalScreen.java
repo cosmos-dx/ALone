@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -33,6 +35,11 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
 public class FinalScreen extends AppCompatActivity implements DialogInterface.OnDismissListener,
@@ -86,9 +93,25 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
                 switch (s.toString()){
                     case "#close":
                         closeapp();
+                        break;
                     case "#smile":
                         Intent Intent3=new   Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
                         startActivity(Intent3);
+                        break;
+                    case "#delete":
+                        AlertDeleteAll();
+                        break;
+                    case "#password":
+                        Intent i = new Intent(FinalScreen.this, RegistrationActivity.class);
+                        startActivity(i);
+                        break;
+
+                    case "#sound":
+                        final MediaPlayer mp = MediaPlayer.create(FinalScreen.this, R.raw.noti);
+                        mp.start();
+                        break;
+
+
                 }
 
             }
@@ -224,9 +247,12 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
                  case R.id.deleteall:
                      AlertDeleteAll();
                      drawerLayout.closeDrawer(Gravity.LEFT);
+                     break;
 
                  case R.id.aboutapp:
-                     dbExport expdb = new dbExport();
+                      //exportDB();
+                     Toast.makeText(FinalScreen.this, "Upcoming Feature", Toast.LENGTH_SHORT).show();
+                     break;
 
                  case R.id.shareapp:
                      try {
@@ -240,12 +266,17 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
                      } catch(Exception e) {
                          //e.toString();
                      }
+                     break;
 
                  case R.id.aboutcheat:
                      ArrayList<String> cheat = new ArrayList<>();
                      cheat.add("#close");
                      cheat.add("#smile");
+                     cheat.add("#delete");
+                     cheat.add("#password");
+                     cheat.add("#sound");
                      AlertCheat(cheat);
+                     break;
 
 
 
@@ -447,6 +478,29 @@ public class FinalScreen extends AppCompatActivity implements DialogInterface.On
         //recyclerView.getItemDecorationAt(data_key.size()-1);
 
     }
+    public void exportDB() {
+        FileChannel source=null;
+        FileChannel destination=null;
+        String backupDBPath = "Alone.db";
+        File currentDB = getDatabasePath("Alone.db");
+        File backupDB = new File(Environment.getExternalStorageDirectory(),backupDBPath);
+        try {
+            source = new FileInputStream(currentDB).getChannel();
+            //Toast.makeText(FinalScreen.this, source.toString(), Toast.LENGTH_SHORT).show();
+            destination = new FileOutputStream(backupDB).getChannel();
+            Toast.makeText(FinalScreen.this, destination.toString(), Toast.LENGTH_SHORT).show();
+            destination.transferFrom(source, 0, source.size());
+            source.close();
+            destination.close();
+            Toast.makeText(this, "Your Database is Exported !!", Toast.LENGTH_LONG).show();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 
     public void getFinalMsg(){
         Toast.makeText(this, "this is long", Toast.LENGTH_SHORT).show();

@@ -32,13 +32,17 @@ public class RegistrationActivity extends AppCompatActivity {
                 String old = old_login_pass.getText().toString();
                 String newpass = new_login_pass.getText().toString();
                 String conpass = con_login_pass.getText().toString();
-                if(newpass.equals(conpass)){
-                    db.update(old, newpass);
-                    Intent i = new Intent(RegistrationActivity.this, LoginActivity.class);
-                    startActivity(i);
+                if(!db.Ismatched(old)){
+                    old_login_pass.setError("Not Matched");
                 }
                 else {
-                    con_login_pass.setError("Not Matched");
+                    if (newpass.equals(conpass)) {
+                        db.update(old, newpass);
+                        Intent i = new Intent(RegistrationActivity.this, LoginActivity.class);
+                        startActivity(i);
+                    } else {
+                        con_login_pass.setError("Not Matched");
+                    }
                 }
             }
         });
